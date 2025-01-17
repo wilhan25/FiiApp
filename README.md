@@ -1,4 +1,5 @@
 # FiiApp
+<<<<<<< HEAD
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5.
 
@@ -57,3 +58,6 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=======
+Projeto para estudos com o tema de Fundos Imobiliários
+>>>>>>> 3b3cf05e0eb22c529768c15cb1cb4f96138bc198
