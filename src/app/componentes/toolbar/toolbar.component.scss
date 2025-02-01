@@ -1,0 +1,35 @@
+mat-toolbar {
+    background-color: #002846; /* Azul claro */
+    color: white; /* Cor do texto */
+    font-size: 16px;
+    display: flex; /* Ativa Flexbox */
+    align-items: center; /* Centraliza verticalmente os itens */
+  
+    mat-icon {
+      margin-right: 8px; /* Espaço entre o ícone e o texto */
+    }
+  
+    span {
+      margin-right: 100px; /* Espaço entre o texto e os botões */
+    }
+  
+    section {
+      display: flex;
+      align-items: center;
+  
+      .example-button-row {
+        display: flex;
+        gap: 20px; /* Espaço entre os botões */
+      }
+    }
+  
+    button {
+      background-color: #ffffff; /* Fundo branco */
+      color: #002846; /* Texto azul escuro */
+      
+      &:hover {
+        background-color: #e0e0e0; /* Cinza claro no hover */
+      }
+    }
+  }
+  

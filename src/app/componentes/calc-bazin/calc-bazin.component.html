@@ -1,0 +1,56 @@
+<app-toolbar></app-toolbar>
+<mat-card class="page-card">
+    <mat-card-title class="page-title">Método Bazin</mat-card-title>
+    <mat-card-content>
+        <p class="description">O método de Décio Bazin para calcular o valor teto de uma ação é simples e consiste em dividir o valor médio dos
+            dividendos pagos pela empresa pela taxa mínima de retorno desejada – tradicionalmente fixada em 6% ao ano – para se
+            obter o preço máximo que se deveria pagar pela ação a fim de garantir um rendimento atrativo por meio dos
+            dividendos; dessa forma, se o preço de mercado estiver abaixo do valor calculado, a ação é considerada subvalorizada
+            e apresenta uma margem de segurança para o investidor, que também deve observar a consistência no pagamento dos
+            dividendos, a liquidez do papel e os fundamentos da empresa para confirmar a qualidade do investimento.
+        </p>        
+        <p class="description">Fórmula: Preço Teto = (Valor médio dos dividendos anuais por ação) ÷ (Taxa mínima de retorno desejada)</p>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined" class="form-card">
+  <mat-card-title class="card-title">Calculadora de Preço Teto</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Sigla da Ação</mat-label>
+      <input matInput [(ngModel)]="siglaAcao">
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Cotação</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" [(ngModel)]="cotacao">
+      <span matTextPrefix>R$&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Yield Esperado</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" [(ngModel)]="yieldEsperado">
+      <span matTextSuffix>%</span>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Dividendos pagos (3 anos)</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" [(ngModel)]="dividendosPagos">
+      <span matTextPrefix>R$&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Preço Teto</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" [value]="precoTeto" readonly>
+      <span matTextPrefix>R$&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Margem de Segurança</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" [value]="margem_seg" readonly>
+      <span matTextSuffix>%</span>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="calcularPrecoTeto()">Calcular Preço Teto</button>
+  </mat-card-content>
+</mat-card>

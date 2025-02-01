@@ -1,0 +1,57 @@
+.page-title {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  color: #3f51b5; /* Cor primária */
+}
+
+.description {
+  text-align: justify;
+  margin: 10px 20px;
+  color: #555; /* Cor de texto secundária */
+}
+
+.page-card {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.form-card {
+  width: 100%;
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; /* Inclui padding e border no tamanho total do elemento */
+}
+
+.card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3f51b5; /* Cor primária */
+}
+
+.form-card mat-card-content {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens sejam distribuídos em várias linhas */
+  justify-content: space-between; /* Distribui o espaço entre os itens */
+  width: 100%; /* Garante que o conteúdo ocupe toda a largura do card */
+  box-sizing: border-box; /* Inclui padding e border no tamanho total do elemento */
+}
+
+.form-card mat-form-field {
+  width: calc(50% - 10px); /* Garante que os campos de formulário ocupem metade da largura disponível menos a margem */
+  margin: 5px; /* Adiciona margem de 5px em todos os lados */
+}

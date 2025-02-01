@@ -1,40 +1,78 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { PokeapiService, PokemonDetails } from '../../services/pokeapi.service';
-import { Observable, of } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { AnbimaApiService } from '../../services/anbima-api.service';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
+import { DadosTabela } from '../../models/dados-tabela/dados-tabela.module';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [MatTableModule, CommonModule],
+  imports: [
+    MatTableModule,
+    CommonModule,
+    ToolbarComponent,
+    MatCardModule,
+    MatButtonModule,
+    MatPaginatorModule,
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'type1', 'type2'];
-  dataSource$: Observable<PokemonDetails[]> = of([]); // Inicializa com um array vazio
-  accessToken: string | null = null;
+  dataSource$: Observable<DadosTabela[]> | null = null;
+  dataSource = new MatTableDataSource<DadosTabela>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = [
+    'id',
+    'sigla',
+    'dy',
+    'pv',
+    'liquidezDiaria',
+    'patrimonioLiquido',
+    'variacao12Meses',
+  ];
 
-  constructor(private pokemonService: PokeapiService, private anbima: AnbimaApiService) {}
+  constructor(private fiiService: AnbimaApiService) { }
 
   ngOnInit(): void {
-    this.dataSource$ = this.pokemonService.getPokemonWithDetails();
+    setTimeout(() => {
+      this.OrdenarPorId();
+    }, 100);
+  }
 
-    this.anbima.getAccessToken().subscribe({
-      next: (response) => { 
-        this.accessToken = response.access_token; 
-        console.log('Access Token:', this.accessToken); 
-      },
-      error: (error) => { 
-        console.error('Erro ao obter o access token', error); 
-      },
-      complete: () => { 
-        console.log('Requisição concluída'); 
-      }
+  FiltrarMaisDividendos(): void {
+    this.dataSource$ = this.fiiService.getFundosImobiliarios().pipe(
+      map((dados) => dados.sort((a, b) => b.dy - a.dy))
+    );
+    this.dataSource$.subscribe(data => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator; // Reatribua o paginator após atualizar os dados
     });
-    
+  }
+
+  FiltrarMaiorPatrimonio(): void {
+    this.dataSource$ = this.fiiService.getFundosImobiliarios().pipe(
+      map((dados) => dados.sort((a, b) => b.patrimonioLiquido - a.patrimonioLiquido))
+    );
+    this.dataSource$.subscribe(data => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator; // Reatribua o paginator após atualizar os dados
+    });
+  }
+
+  OrdenarPorId(): void {
+    this.dataSource$ = this.fiiService.getFundosImobiliarios().pipe(
+      map((dados) => dados.sort((a, b) => a.id - b.id)) // Ordena por ID de forma ascendente
+    );
+    this.dataSource$.subscribe(data => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator; // Reatribua o paginator após atualizar os dados
+    });
   }
 }
