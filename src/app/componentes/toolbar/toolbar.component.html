@@ -3,9 +3,10 @@
     <span>FiiApp</span>
     <section>
         <div class="example-button-row">
-          <button mat-flat-button>Lista de Fii's</button>
-          <button mat-flat-button>Calculadora de Preço Teto</button>
-          <button mat-flat-button>Meus Fii's Favoritos</button>
+          <button mat-flat-button [routerLink]="['/app-home']">Lista de Fii's</button>
+          <button mat-flat-button [routerLink]="['/app-calc-bazin']">Calculadora de Preço Teto</button>
+          <button mat-flat-button [routerLink]="['/app-carteira']">Meus Fii's Favoritos</button>
+          <button mat-flat-button [routerLink]="['/']">Calculadoras</button>
         </div>
       </section>
   </mat-toolbar>
