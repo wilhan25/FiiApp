@@ -1,12 +1,12 @@
 <mat-toolbar>
-    <mat-icon>payments</mat-icon>
+    <mat-icon [routerLink]="['/']">payments</mat-icon>
     <span>FiiApp</span>
     <section>
         <div class="example-button-row">
           <button mat-flat-button [routerLink]="['/app-home']">Lista de Fii's</button>
           <button mat-flat-button [routerLink]="['/app-calc-bazin']">Calculadora de Preço Teto</button>
-          <button mat-flat-button [routerLink]="['/app-carteira']">Meus Fii's Favoritos</button>
-          <button mat-flat-button [routerLink]="['/']">Calculadoras</button>
+          <button mat-flat-button [routerLink]="['/app-cadastro-investidor']">Cadastro de Carteira</button>
+          <button mat-flat-button [routerLink]="['/app-carteira']">Carteiras</button>
         </div>
       </section>
   </mat-toolbar>
